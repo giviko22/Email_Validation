@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="email_identity_verification_email_template" model="mail.template">
+            <field name="name">Email Verification Template</field>
+            <field name="model_id" ref="email_validation.model_email_identity_verification"/>
+            <field name="subject">Odoo Email Verification</field>
+            <field name="email_from">{{object.create_uid.partner_id.email}}</field>
+            <field name="body_html" type="html">
+                <p>
+                </p>
+            </field>
+            <field name="auto_delete" eval="True"/>
+        </record>
+
+        <template id="verification_success" name="Verification Success">
+            <t t-call="web.frontend_layout">
+                <div id="wrap">
+                    <div class="oe_structure oe_empty">
+                        <section class="s_text_image pt104 pb104" data-snippet="s_image_text" data-name="Image - Text">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-8 text-lg-left text-center my-auto">
+                                        <h2>Your Email Was Successfully Verified!</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="verification_failed" name="Verification Failed">
+            <t t-call="web.frontend_layout">
+                <div id="wrap">
+                    <div class="oe_structure oe_empty">
+                        <section class="s_text_image pt104 pb104" data-snippet="s_image_text" data-name="Image - Text">
+                            <div class="container">
+                                <div class="row align-items-center">
+                                    <div class="col-lg-8 text-lg-left text-center my-auto">
+                                        <h2>Email Verification Failed, Email Should Be Verified From Different Odoo User!</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

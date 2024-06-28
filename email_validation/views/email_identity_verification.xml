@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_email_identity_verification_list">
+        <field name="model">email.identity.verification</field>
+        <field name="arch" type="xml">
+            <tree string="Email Validation Results">
+                <field name="email"/>
+                <field name="user_id"/>
+                <field name="res_model"/>
+                <field name="res_id"/>
+                <field name="verification_result"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_email_identity_verification_form">
+        <field name="model">email.identity.verification</field>
+        <field name="arch" type="xml">
+            <form string="Email Identity Verification">
+                <sheet>
+                    <group>
+                        <field name="email"/>
+                        <field name="user_id"/>
+                        <field name="res_model"/>
+                        <field name="res_id"/>
+                        <field name="verification_result"/>
+                        <field name="active" widget="boolean_toggle"/>
+                        <field name="user_id" readonly="1"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="email_identity_verification_search" model="ir.ui.view">
+        <field name="model">email.identity.verification</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="email"/>
+                <field name="user_id"/>
+                <field name="verification_result"/>
+                <field name="active"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_email_identity_verification_action" model="ir.actions.act_window">
+        <field name="name">Email Identity Verification</field>
+        <field name="res_model">email.identity.verification</field>
+    </record>
+
+    <menuitem id="email_identity_verification_menu" name="Email Identity Verification"
+              parent="email_validation.results_menu"
+              action="view_email_identity_verification_action"/>
+</odoo>

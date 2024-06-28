@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_email_validation_results_list">
+        <field name="model">email.validation.results</field>
+        <field name="arch" type="xml">
+            <tree string="Email Validation Results">
+                <field name="email"/>
+                <field name="format"/>
+                <field name="domain"/>
+                <field name="alias"/>
+                <field name="disposable"/>
+                <field name="dns"/>
+                <field name="whitelist"/>
+                <field name="create_date"/>
+            </tree>
+        </field>
+    </record>
+    <record model="ir.ui.view" id="view_email_validation_results_form">
+        <field name="model">email.validation.results</field>
+        <field name="arch" type="xml">
+            <form string="Email Validation Results">
+                <sheet>
+                    <group>
+                        <field name="email"/>
+                        <field name="active" widget="boolean_toggle"/>
+                        <field name="create_date" readonly="1"/>
+                        <field name="format"/>
+                        <field name="domain"/>
+                        <field name="alias"/>
+                        <field name="disposable"/>
+                        <field name="dns"/>
+                        <field name="whitelist"/>
+                        <field name="note"/>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="email_validation_results_search" model="ir.ui.view">
+        <field name="model">email.validation.results</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="email"/>
+                <field name="active"/>
+                <separator/>
+                <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_email_validation_results_action" model="ir.actions.act_window">
+        <field name="name">Email Validation Results</field>
+        <field name="res_model">email.validation.results</field>
+    </record>
+
+    <menuitem id="results_menu" name="Results" parent="base.menu_custom" sequence="23"/>
+
+    <menuitem id="email_validation_results_menu" name="Email Validation" parent="results_menu"
+              action="view_email_validation_results_action"/>
+</odoo>

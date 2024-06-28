@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_email_validation_results,access.email.validation.results,model_email_validation_results,,1,1,1,1
+access_email_identity_verification,access.email.identity.verification,model_email_identity_verification,,1,1,1,1
